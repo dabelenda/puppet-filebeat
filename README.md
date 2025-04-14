@@ -1,6 +1,6 @@
 # puppet-filebeat
 
-[![Build Status](https://travis-ci.org/pcfens/puppet-filebeat.svg?branch=master)](https://travis-ci.org/pcfens/puppet-filebeat)
+WARNING: This fork of pcfens/filebeat is a temporary stop-gap measure for password management before migrating from ELK to loki. It contains ugly workarounds for Sensitive[Deferred] login/password output credentials. Refer to IS SRE1 Team if you think this repository should be deleted.
 
 #### Table of Contents
 

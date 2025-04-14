@@ -123,7 +123,7 @@ class filebeat::config {
       file { 'filebeat.yml':
         ensure       => $filebeat::file_ensure,
         path         => $filebeat::config_file,
-        content      => template($filebeat::conf_template),
+        content      => Sensitive(stdlib::deferrable_epp($filebeat::conf_template, {'filebeat_config' => $filebeat_config})),
         owner        => $filebeat::config_file_owner,
         group        => $filebeat::config_file_group,
         mode         => $filebeat::config_file_mode,
@@ -167,7 +167,7 @@ class filebeat::config {
       file { 'filebeat.yml':
         ensure       => $filebeat::file_ensure,
         path         => $filebeat::config_file,
-        content      => template($filebeat::conf_template),
+        content      => Sensitive(stdlib::deferrable_epp($filebeat::conf_template, {'filebeat_config' => $filebeat_config})),
         owner        => $filebeat::config_file_owner,
         group        => $filebeat::config_file_group,
         mode         => $filebeat::config_file_mode,
@@ -212,7 +212,7 @@ class filebeat::config {
       file { 'filebeat.yml':
         ensure       => $filebeat::file_ensure,
         path         => $filebeat::config_file,
-        content      => template($filebeat::conf_template),
+        content      => Sensitive(stdlib::deferrable_epp($filebeat::conf_template, {'filebeat_config' => $filebeat_config})),
         owner        => $filebeat::config_file_owner,
         group        => $filebeat::config_file_group,
         mode         => $filebeat::config_file_mode,
@@ -259,7 +259,7 @@ class filebeat::config {
       file { 'filebeat.yml':
         ensure       => $filebeat::file_ensure,
         path         => $filebeat::config_file,
-        content      => template($filebeat::conf_template),
+        content      => Sensitive(stdlib::deferrable_epp($filebeat::conf_template, {'filebeat_config' => $filebeat_config})),
         owner        => $filebeat::config_file_owner,
         group        => $filebeat::config_file_group,
         mode         => $filebeat::config_file_mode,
@@ -309,7 +309,7 @@ class filebeat::config {
       file { 'filebeat.yml':
         ensure       => $filebeat::file_ensure,
         path         => $filebeat::config_file,
-        content      => template($filebeat::conf_template),
+        content      => Sensitive(stdlib::deferrable_epp($filebeat::conf_template, {'filebeat_config' => $filebeat_config})),
         validate_cmd => $validate_cmd,
         notify       => Service['filebeat'],
         require      => File['filebeat-config-dir'],

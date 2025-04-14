@@ -34,7 +34,7 @@ class filebeat::params {
   $overwrite_pipelines            = false
   $kernel_fail_message            = "${facts['kernel']} is not supported by filebeat."
   $osfamily_fail_message          = "${facts['os']['family']} is not supported by filebeat."
-  $conf_template                  = "${module_name}/pure_hash.yml.erb"
+  $conf_template                  = "${module_name}/hackish_sensitive.yml.epp"
   $disable_config_test            = false
   $xpack                          = undef
   $systemd_override_dir           = '/etc/systemd/system/filebeat.service.d'

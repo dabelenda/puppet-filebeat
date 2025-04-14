@@ -1,0 +1,45 @@
+<% | Hash $filebeat_config | -%>
+### Filebeat configuration managed by Puppet ###
+---
+name: <%= $filebeat_config['name'] %>
+tags: []
+fields: {}
+fields_under_root: <%= $filebeat_config['fields_under_root'] %>
+filebeat:
+  config.inputs:
+    enabled: <%= $filebeat_config['filebeat']['config.inputs']['enabled'] %>
+    path: "<%= $filebeat_config['filebeat']['config.inputs']['path'] %>"
+  config.modules:
+    enabled: <%= $filebeat_config['filebeat']['config.modules']['enabled'] %>
+    path: "<%= $filebeat_config['filebeat']['config.modules']['path'] %>"
+  modules: []
+  overwrite_pipelines: <%= $filebeat_config['filebeat']['overwrite_pipelines'] %>
+  shutdown_timeout: '<%= $filebeat_config['filebeat']['shutdown_timeout'] %>'
+  registry:
+    path: "<%= $filebeat_config['filebeat']['registry']['path'] %>"
+    file_permissions: '<%= $filebeat_config['filebeat']['registry']['file_permissions'] %>'
+    flush: <%= $filebeat_config['filebeat']['registry']['flush'] %>
+  autodiscover: {}
+http:
+  enabled: <%= $filebeat_config['http']['enabled'] %>
+  host: <%= $filebeat_config['http']['host'] %>
+  port: <%= $filebeat_config['http']['port'] %>
+cloud: {}
+queue: {}
+output:
+  kafka:
+    hosts:
+<%- $filebeat_config['output']['kafka']['hosts'].each | String $host | { -%>
+    - <%= $host %>
+<% } %>
+    topic: "<%= $filebeat_config['output']['kafka']['topic'] %>"
+    username: <%= $filebeat_config['output']['kafka']['username'].unwrap() %>
+    password: <%= $filebeat_config['output']['kafka']['password'].unwrap() %>
+    ssl.enabled: <%= $filebeat_config['output']['kafka']['ssl.enabled'] %>
+    sasl.mechanism: <%= $filebeat_config['output']['kafka']['sasl.mechanism'] %>
+shipper: {}
+logging: {}
+runoptions: {}
+processors: []
+setup: {}
+
